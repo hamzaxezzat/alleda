@@ -5,6 +5,7 @@ import styles from '../styles/signin.module.scss';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 import Link from 'next/link';
 import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import { useState } from 'react';
 
 const initalValues = {
@@ -18,8 +19,16 @@ export default function signin() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
   };
+  console.log(user);
+  const loginValidation = Yup.object({
+    login_email: Yup.string()
+      .required('Email address is required')
+      .email('Please Enter a valid email address'),
+    login_password: Yup.string('Password is required').required(
+      'Please Enter a Strong password'
+    ),
+  });
   const country = {
     flag: 'https://cdn.ipregistry.co/flags/emojitwo/de.svg',
     name: 'Germany',
@@ -42,7 +51,14 @@ export default function signin() {
             <p>
               Get Access to one of the best Eshopping services in th world!.
             </p>
-            <Formik>
+            <Formik
+              enableReinitialize
+              initialValues={{
+                login_email,
+                login_password,
+              }}
+              validationSchema={loginValidation}
+            >
               {(form) => (
                 <Form>
                   <LoginInput
@@ -51,10 +67,14 @@ export default function signin() {
                     name="login_email"
                     placeholder="Email Address"
                     onChange={handleChange}
-                    value={user.value}
                   />
-                  {/* <LoginInput icon="email" placeholder="Helo" />
-                  <LoginInput icon="password" placeholder="Helo" /> */}
+                  <LoginInput
+                    type="password"
+                    icon="password"
+                    name="login_password"
+                    placeholder="Email password"
+                    onChange={handleChange}
+                  />
                 </Form>
               )}
             </Formik>

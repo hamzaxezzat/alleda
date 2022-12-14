@@ -7,7 +7,11 @@ import { useField } from 'formik';
 function LoginInput({ icon, placeholder, value, ...props }) {
   const [field, meta] = useField(props);
   return (
-    <div className={styles.input}>
+    <div
+      className={`${styles.input} ${
+        meta.touched && meta.error ? styles.error : ''
+      }`}
+    >
       {icon == 'user' ? (
         <BiUser />
       ) : icon == 'email' ? (
