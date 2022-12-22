@@ -14,10 +14,15 @@ import { getProviders, signIn } from 'next-auth/react';
 const initalValues = {
   login_email: '',
   login_password: '',
+  name: '',
+  email: '',
+  password: '',
+  conf_password: '',
 };
 export default function signin({ providers }) {
   const [user, setUser] = useState(initalValues);
-  const { login_email, login_password } = user;
+  const { login_email, login_password, name, email, password, conf_password } =
+    user;
   console.log(providers);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +36,23 @@ export default function signin({ providers }) {
     login_password: Yup.string('Password is required').required(
       'Please Enter a Strong password'
     ),
+  });
+  const registerValidation = Yup.object({
+    name: Yup.string()
+      .min(2, 'Your name should be between 2-16 Characters')
+      .max(16, 'Your name should be between 2-16 Characters')
+      .required('Please Enter Your Full name')
+      .matches(/^[aA-zZ]/, 'Names should be only characters'),
+    email: Yup.string()
+      .required('Not a Valid email')
+      .email('Enter valid email'),
+    password: Yup.string()
+      .required('No password provided.')
+      .min(8, 'Password is too short - should be 8 chars minimum.')
+      .max(36, 'Password is too long - should be under 36 chars.'),
+    conf_password: Yup.string()
+      .required('password Not Matched')
+      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
   });
   const country = {
     flag: 'https://cdn.ipregistry.co/flags/emojitwo/de.svg',
@@ -112,31 +134,44 @@ export default function signin({ providers }) {
             <Formik
               enableReinitialize
               initialValues={{
-                login_email,
-                login_password,
+                name,
+                email,
+                password,
+                conf_password,
               }}
-              validationSchema={loginValidation}
+              validationSchema={registerValidation}
             >
               {(form) => (
                 <Form>
                   <LoginInput
                     type="text"
+                    icon="user"
+                    name="name"
+                    placeholder="Full Name"
+                    onChange={handleChange}
+                  />
+                  <LoginInput
+                    type="text"
                     icon="email"
-                    name="login_email"
+                    name="email"
                     placeholder="Email Address"
                     onChange={handleChange}
                   />
                   <LoginInput
                     type="password"
                     icon="password"
-                    name="login_password"
-                    placeholder="Email password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                  />
+                  <LoginInput
+                    type="password"
+                    icon="password"
+                    name="conf_password"
+                    placeholder="Re-Type password"
                     onChange={handleChange}
                   />
                   <CircledIconBtn type="submit" text="Sign in" />
-                  <div className={styles.forgot}>
-                    <Link href="/forget">Forget Password ?</Link>
-                  </div>
                 </Form>
               )}
             </Formik>
