@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import thunk from "redux-thunk";
+
 // Store storage State in local storage
 import storage from 'redux-persist/lib/storage';
 // Store Redux in store in localStorage
 import { persistReducer} from "redux-persist"
+
+import cart from "./cartSlice"
 
 const reducers = combineReducers({});
 
