@@ -2,6 +2,7 @@ import styles from "./style.module.scss"
 import {MdSecurity} from "react-icons/md"
 import {BsSuitHeart} from "react-icons/bs"
 import {RiAccountPinCircleLine, RiArrowDropDownFill} from "react-icons/ri"
+import Link from "next/link"
 export default function Top() {
   return (
     <div className={styles.top}>
@@ -27,11 +28,13 @@ export default function Top() {
                 </li>
                 <li>
                     <BsSuitHeart />
-                    <span>Whishlist</span> 
+                    <Link href="/profile/whishlist">
+                        <span>Whishlist</span> 
+                    </Link>
                 </li>
                 <li>
-                    <RiAccountPinCircleLine />
                     <div className={styles.flex}>
+                    <RiAccountPinCircleLine />
                         <span>Account</span>
                         <RiArrowDropDownFill/>
                     </div>
