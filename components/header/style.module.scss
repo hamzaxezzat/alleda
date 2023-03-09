@@ -1,0 +1,19 @@
+.header{
+    height: 100%;
+    box-shadow: ;
+}
+// Ad.js------------------------------------------------------------
+.ad{
+    height: 45px;
+    width: 100%;
+    background: url("../../public/images/ad.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+// Top.js------------------------------------------------------------
+.top{
+    background: #f8f8f8;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
