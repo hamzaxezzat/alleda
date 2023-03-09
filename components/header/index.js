@@ -3,7 +3,7 @@
  import Ad from "./Ad"
 import Main from "./Main"
 import Top from "./Top"
-import styles from "./style.module.scss"
+import styles from "./styles.module.scss"
 
 export default function Header() {
   return (

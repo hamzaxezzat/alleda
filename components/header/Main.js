@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styles from "./style.module.scss"
+import styles from "./styles.module.scss"
 import { RiSearch2Line } from "react-icons/ri"
 import { FaOpencart } from "react-icons/fa"
 import { useSelector } from "react-redux"

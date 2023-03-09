@@ -1,5 +1,5 @@
 import Image from "next/image"
-import styles from "./style.module.scss"
+import styles from "./styles.module.scss"
 import Link from "next/link"
 
 export default function UserMenu({loggedIn}) {
