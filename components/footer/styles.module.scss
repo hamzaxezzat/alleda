@@ -54,4 +54,29 @@
             }
         }
     }
+    &__flex{
+        display: flex;
+        margin-top: 10px;
+    }
+    &__newsletter{
+        input{
+            outline: none;
+            bottom: 1px solid #999;
+            flex:1;
+            height: 40px;
+            font-style: 14px;
+            padding-left: 10px;
+        }
+        button{
+            width: 150px;
+        }
+        p{
+            margin-top: 10px;font-style: 12px;color: #666;
+            a{
+                color: $blue-color;
+                text-decoration: underline;
+                
+            }
+        }
+    }
 }
