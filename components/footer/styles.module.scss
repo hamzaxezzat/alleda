@@ -91,7 +91,38 @@
             width: 60px;
             height: 40px;
             object-fit: cover;
+        }
+    }
+    &__copyright{
+        section{
+            
+            font-style: 12px;
+            color:#666;
+            padding-bottom: 10px;
 
+        }
+        ul{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            column-gap:2rem;
+            li{
+                position: relative;
+                text-decoration: underline;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    background: #666;
+                    width: 1px;
+                    height: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: -1rem;
+                }
+                &:last-of-type::after{
+                    display: none;
+                }
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+import Copyright from "./Copyright"
 import Links from "./Links"
 import NewsLetter from "./NewsLetter"
 import Payment from "./Payment"
@@ -12,6 +13,7 @@ export default function Footer() {
             <Socials />
             <NewsLetter />
             <Payment />
+            <Copyright />
         </div>
     </footer>
   )
