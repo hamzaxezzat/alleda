@@ -7,7 +7,7 @@ export default function Links() {
       {/* Change first header to logo (Logo in top of first section) */}
       {links.map((link, i) => (
         <ul key={i}>
-          {i === 1 ? (
+          {i === 0 ? (
             <img src="../../../logo.png" alt="" />
           ) : (
             <b>{link.heading}</b>
