@@ -29,9 +29,9 @@ export async function getServerSideProps(){
   .then((res)=>{
     return res.data.location.country;
   }).catch((err)=>{
-    console.log(err)
+    // console.log(err)
   })
-  console.log(data)
+  // console.log(data)
   data={
     name: 'Germany',
     flag:{
