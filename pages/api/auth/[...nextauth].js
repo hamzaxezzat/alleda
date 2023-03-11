@@ -3,6 +3,7 @@ import AppleProvider from 'next-auth/providers/apple'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from "next-auth/providers/github";
+import Auth0 from "next-auth/providers/auth0";
 
 
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
@@ -28,6 +29,11 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET
+    }),
+    Auth0({
+      clientId: process.env.AUTH0_ID,
+      clientSecret: process.env.AUTH0_SECRET,
+      issuer: process.env.AUTH0_ISSUER
     }),
   ],
   pages:{
