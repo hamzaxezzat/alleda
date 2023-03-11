@@ -2,13 +2,19 @@ import axios from 'axios'
 import Footer from '../components/footer'
 import Header from '../components/header'
 import styles from '../styles/Home.module.scss'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 // const inter = Inter({ subsets: ['latin'] })
 
+
 export default function Home({country}) {
+  const { data: session } = useSession()
   return (
     <div >
         <Header country={country} />
+        {
+            session ? "You Are logged" : " Please Log in "
+        }
         <Footer country={country} /> 
         
     </div>
