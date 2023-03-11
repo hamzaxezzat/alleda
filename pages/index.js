@@ -9,6 +9,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function Home({country}) {
   const { data: session } = useSession()
+  console.log(session)
   return (
     <div >
         <Header country={country} />
