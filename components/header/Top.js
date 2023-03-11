@@ -5,10 +5,13 @@ import {BsSuitHeart} from "react-icons/bs"
 import {RiAccountPinCircleLine, RiArrowDropDownFill} from "react-icons/ri"
 import Link from "next/link"
 import UserMenu from "./UserMenu"
+import { useSession } from "next-auth/react"
 
 export default function Top({country}) {
-    const [loggedIn,setLoggedIn] = useState(true)
+    const {data:session} = useSession()
+    // const [loggedIn,setLoggedIn] = useState(true)
     const [visible,setVisible] = useState(false)
+    console.log( "From Top " + JSON.stringify (session))
   return (
       <div className={styles.top}>
           <div className={styles.top__container}>
@@ -40,11 +43,11 @@ export default function Top({country}) {
                   
                   <li className={styles.li} onMouseOutCapture={()=> setVisible(true)} onMouseLeave={()=>setVisible(false)}>
                   {
-                      loggedIn ? (
+                      session ? (
                           <li className={styles.li}>
                       <div className={styles.flex}>
-                      <img src="https://www.pockettactics.com/wp-content/sites/pockettactics/2021/07/Kayleigh-avatar.jpg" alt="Profile" />
-                          <span>name</span>
+                      <img src={session.user.image} alt="Profile" />
+                          <span>{session.user.name}</span>
                           <RiArrowDropDownFill />
                       </div>
                   </li>
@@ -58,7 +61,7 @@ export default function Top({country}) {
                   </li>
                       )
                   }
-                  {visible && <UserMenu loggedIn = {loggedIn}  />}
+                  {visible && <UserMenu session = {session}  />}
                   </li>
               </ul>
           </div>
