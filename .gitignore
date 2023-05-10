@@ -32,3 +32,6 @@ yarn-error.log*
 env
 # vercel
 .vercel
+
+# Notes
+notes.md

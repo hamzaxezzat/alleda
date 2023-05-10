@@ -1,27 +1,29 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
-import thunk from "redux-thunk";
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 
-// Store storage State in local storage
+// Store storage State in localstorage
 import storage from 'redux-persist/lib/storage';
 // Store Redux in store in localStorage
-import { persistReducer} from "redux-persist"
+import { persistReducer } from 'redux-persist';
 
-import cart from "./cartSlice"
+import cart from './cartSlice';
 
-const reducers = combineReducers({});
+const reducers = combineReducers({ cart });
 
+// To save states in Localstorage
 const config = {
-    key : "root",
-    storage,
+  key: 'root',
+  storage,
 };
 
-const reducer = persistReducer(config,reducers);
+// To save Redux in Localstorage
+const reducer = persistReducer(config, reducers);
 
 const store = configureStore({
-    reducer: reducer,
-    devTools : process.env.NODE_ENV !=="production",
-    middleware: [thunk]
-}); 
+  reducer: reducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk],
+});
 
-export default store
+export default store;
