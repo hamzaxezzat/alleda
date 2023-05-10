@@ -1,49 +1,62 @@
-// ========== Start Default Values ========== 
+// ========== Start Default Values ==========
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  &::before,
+  &::after {
     box-sizing: border-box;
-    &::before,&::after{
-        box-sizing: border-box;
-    }
+  }
 }
 
-body{
-    font-family: sans-serif;
-    line-height: 1.5;
-
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 // By default those don't take body (font: family/weight/style etc...)
-button,input,textarea,select{
-    font:inherit
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 // Break the overflow text in small width
-p,h1,h2,h3,h4,h5,h6{
-    overflow-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 
 // steak inside the element
-img,video,canvas,svg{
-    max-width: 100%;
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-button{
-    border: none;
-    outline: none;
+button {
+  border: none;
+  outline: none;
 }
 
-// ========== End Default Values ========== 
+// ========== End Default Values ==========
