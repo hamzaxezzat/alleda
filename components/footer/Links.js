@@ -1,5 +1,5 @@
-import styles from "./styles.module.scss";
-import Link from "next/link";
+import styles from './styles.module.scss';
+import Link from 'next/link';
 
 export default function Links() {
   return (
@@ -26,69 +26,69 @@ export default function Links() {
 
 const links = [
   {
-    heading: "SHOPPAY",
+    heading: 'SHOPPAY',
     links: [
       {
-        name: "About us",
-        link: "",
+        name: 'About us',
+        link: '',
       },
       {
-        name: "Contact us",
-        link: "",
+        name: 'Contact us',
+        link: '',
       },
       {
-        name: "Social Responsibility",
-        link: "",
+        name: 'Social Responsibility',
+        link: '',
       },
       {
-        name: "",
-        link: "",
+        name: '',
+        link: '',
       },
     ],
   },
   {
-    heading: "HELP & SUPPORT",
+    heading: 'HELP & SUPPORT',
     links: [
       {
-        name: "Shipping Info",
-        link: "",
+        name: 'Shipping Info',
+        link: '',
       },
       {
-        name: "Returns",
-        link: "",
+        name: 'Returns',
+        link: '',
       },
       {
-        name: "How To Order",
-        link: "",
+        name: 'How To Order',
+        link: '',
       },
       {
-        name: "How To Track",
-        link: "",
+        name: 'How To Track',
+        link: '',
       },
       {
-        name: "Size Guide",
-        link: "",
+        name: 'Size Guide',
+        link: '',
       },
     ],
   },
   {
-    heading: "Customer service",
+    heading: 'Customer service',
     links: [
       {
-        name: "Customer service",
-        link: "",
+        name: 'Customer service',
+        link: '',
       },
       {
-        name: "Terms and Conditions",
-        link: "",
+        name: 'Terms and Conditions',
+        link: '',
       },
       {
-        name: "Consumers (Transactions)",
-        link: "",
+        name: 'Consumers (Transactions)',
+        link: '',
       },
       {
-        name: "Take our feedback survey",
-        link: "",
+        name: 'Take our feedback survey',
+        link: '',
       },
     ],
   },
