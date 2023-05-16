@@ -1,11 +1,11 @@
-import { useField } from 'formik';
 import styles from './styles.module.scss';
-import { BiUser } from 'react-icons/bi';
+import { BiAbacus, BiUser } from 'react-icons/bi';
 import { SiMinutemailer } from 'react-icons/si';
 import { IoKeyOutline } from 'react-icons/io5';
+import { useField } from 'formik';
 
-export default function InputLogin({ icon, placeholder, ...props }) {
-  const [filed, meta] = useField(props);
+function LoginInput({ icon, placeholder, value, ...props }) {
+  const [field, meta] = useField(props);
   return (
     <div className={styles.input}>
       {icon == 'user' ? (
@@ -18,12 +18,15 @@ export default function InputLogin({ icon, placeholder, ...props }) {
         ''
       )}
       <input
-        type={filed.type}
-        name={filed.name}
+        type={field.type}
+        name={field.name}
         placeholder={placeholder}
-        {...filed}
+        value={value}
+        {...field}
         {...props}
       />
     </div>
   );
 }
+
+export default LoginInput;
