@@ -1,0 +1,292 @@
+.container {
+  max-width: 1550px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.btn_primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #2f82ff;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.btn_outlined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #2f82ff;
+  background: #f8f8f8;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.error {
+  padding: 10px;
+  color: #ed4337;
+}
+
+.success {
+  padding: 10px;
+  color: #6cc070;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(174, 174, 175, 0.631372549);
+  border-radius: 5px;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper {
+  margin-left: 0 !important;
+  margin-right: auto;
+  cursor: pointer;
+}
+.swiper:hover .swiper-button-prev,
+.swiper:hover .swiper-button-next {
+  display: grid;
+}
+
+.mainSwiper .swiper,
+.user__swiper .swiper,
+.flashDeals__swiper .swiper,
+.offers_swiper .swiper {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+.mainSwiper .swiper-slide img,
+.user__swiper .swiper-slide img,
+.flashDeals__swiper .swiper-slide img,
+.offers_swiper .swiper-slide img {
+  height: 300px !important;
+  border-radius: 10px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+}
+.mainSwiper .swiper-pagination-bullet,
+.user__swiper .swiper-pagination-bullet,
+.flashDeals__swiper .swiper-pagination-bullet,
+.offers_swiper .swiper-pagination-bullet {
+  width: 9px !important;
+  border-radius: 5px !important;
+}
+.mainSwiper .swiper-pagination-bullet-active,
+.user__swiper .swiper-pagination-bullet-active,
+.flashDeals__swiper .swiper-pagination-bullet-active,
+.offers_swiper .swiper-pagination-bullet-active {
+  background: #2f82ff !important;
+  background: white !important;
+  width: 13px !important;
+}
+.mainSwiper .swiper-button-prev,
+.mainSwiper .swiper-button-next,
+.user__swiper .swiper-button-prev,
+.user__swiper .swiper-button-next,
+.flashDeals__swiper .swiper-button-prev,
+.flashDeals__swiper .swiper-button-next,
+.offers_swiper .swiper-button-prev,
+.offers_swiper .swiper-button-next {
+  color: #fff !important;
+  transform: scale(0.5) !important;
+  width: 50px !important;
+  height: 80px !important;
+  transition: 0.2s;
+  background: rgba(102, 102, 102, 0.354) !important;
+  display: none;
+  place-items: center;
+}
+.mainSwiper .swiper-button-prev,
+.user__swiper .swiper-button-prev,
+.flashDeals__swiper .swiper-button-prev,
+.offers_swiper .swiper-button-prev {
+  left: -13px;
+}
+.mainSwiper .swiper-button-next,
+.user__swiper .swiper-button-next,
+.flashDeals__swiper .swiper-button-next,
+.offers_swiper .swiper-button-next {
+  right: -13px;
+}
+
+.offers_swiper {
+  max-width: 700px;
+  transform: translateX(35%);
+}
+@media (max-width: 980px) {
+  .offers_swiper {
+    transform: translateX(1%);
+    max-width: 750px;
+  }
+}
+.offers_swiper .swiper {
+  width: 100%;
+  height: 100%;
+}
+.offers_swiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px !important;
+  border-radius: 10px !important;
+  height: 90% !important;
+  margin-top: 0.6rem !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.offers_swiper .swiper-slide:hover {
+  transform: scale(1.03);
+  transition: 0.2s;
+}
+.offers_swiper .swiper-slide span {
+  position: absolute;
+  color: #fff;
+}
+.offers_swiper .swiper-slide span:first-of-type {
+  bottom: 10px;
+  width: 90px;
+  height: 25px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #fac80f;
+}
+.offers_swiper .swiper-slide span:last-of-type {
+  font-style: italic;
+  top: -5px;
+  right: -5px;
+  background: #f15f6f;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.offers_swiper .swiper-slide img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100% !important;
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
+}
+.offers_swiper .swiper-pagination {
+  display: none;
+}
+
+.user__swiper {
+  position: relative;
+  margin-left: 2rem;
+}
+.user__swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+.user__swiper .swiper-slide img {
+  height: 240px !important;
+}
+
+.flashDeals__swiper .swiper-slide img {
+  border-radius: 0 !important;
+  height: 320px !important;
+}
+.flashDeals__swiper .swiper-button-next,
+.flashDeals__swiper .swiper-button-prev {
+  top: 35%;
+}
+@media (max-width: 450px) {
+  .flashDeals__swiper .swiper-button-next,
+  .flashDeals__swiper .swiper-button-prev {
+    display: grid !important;
+  }
+}
+
+.products__swiper .swiper-button-next,
+.products__swiper .swiper-button-prev {
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #666;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.products__swiper .swiper-button-next::after,
+.products__swiper .swiper-button-prev::after {
+  transform: scale(0.5);
+}
+
+.simillar_swiper {
+  max-width: 650px;
+}
+.simillar_swiper .swiper-pagination {
+  display: none !important;
+}
+.simillar_swiper img {
+  width: 100px;
+  height: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+@media (min-width: 461px) {
+  .simillar_swiper img {
+    width: 150px;
+    height: 200px;
+  }
+}/*# sourceMappingURL=base.css.map */

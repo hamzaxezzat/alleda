@@ -1,0 +1,1 @@
+{"version":3,"sources":["../styles/product.module.scss","product.module.css"],"names":[],"mappings":"AAAA;EACE,iBAAA;ACCF;ADAE;EACE,iBAAA;EACA,cAAA;EACA,aAAA;ACEJ;ADAE;EACE,eAAA;EACA,WAAA;ACEJ;ADAE;EACE,kBAAA;EACA,aAAA;EACA,gBAAA;EACA,SAAA;ACEJ;ADDI;EALF;IAMI,gCAAA;IACA,SAAA;ECIJ;AACF;ADHI;EATF;IAUI,8BAAA;IACA,SAAA;ECMJ;AACF","file":"product.module.css"}

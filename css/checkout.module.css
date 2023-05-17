@@ -1,0 +1,12 @@
+.checkout {
+  max-width: 1400px;
+  margin-top: 2rem;
+  overflow-x: hidden;
+}
+@media (min-width: 1000px) {
+  .checkout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+}/*# sourceMappingURL=checkout.module.css.map */
