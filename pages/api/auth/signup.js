@@ -4,6 +4,7 @@ import db from '../../../utils/db';
 import User from '../../../models/User';
 import { validateEmail } from '../../../utils/validation';
 import { createActivationToken } from '../../../utils/tokens';
+import { sendEmail } from '../../../utils/sendEmails';
 const handler = nc();
 
 handler.post(async (req, res) => {
@@ -26,16 +27,17 @@ handler.post(async (req, res) => {
     }
     const bcryptPassword = await bcrypt.hash(password, 12);
     const newUser = new User({ name, email, password: bcryptPassword });
-    // .save() : Add to DB
+    // .save() : Add user to DB
     const addedUser = await newUser.save();
 
     // To generate Token to verify email
     const activation_token = createActivationToken({
       id: addedUser._id.toString(),
     });
-    console.log(activation_token);
-    res.send(activation_token);
-    // res.send(addedUser);
+    const url = `${process.env.BASE_URL}/activate/${activation_token}`;
+    console.log(url);
+    // res.send(url);
+    sendEmail(email, url, '', 'Activate your account');
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
