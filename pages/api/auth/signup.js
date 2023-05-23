@@ -38,6 +38,10 @@ handler.post(async (req, res) => {
     console.log(url);
     // res.send(url);
     sendEmail(email, url, '', 'Activate your account');
+    await db.disconnectDb();
+    res.json({
+      message: 'Register Success! Please activate your email to start',
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import { useCallback, useState } from 'react';
 import { Provider } from 'react-redux';
 import { getProviders, signIn } from 'next-auth/react';
+import axios, { Axios } from 'axios';
 
 const initalValues = {
   login_email: '',
@@ -18,11 +19,22 @@ const initalValues = {
   email: '',
   password: '',
   conf_password: '',
+  success: '',
+  error: '',
 };
 export default function signin({ providers }) {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initalValues);
-  const { login_email, login_password, name, email, password, conf_password } =
-    user;
+  const {
+    login_email,
+    login_password,
+    name,
+    email,
+    password,
+    conf_password,
+    success,
+    error,
+  } = user;
   console.log(providers);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,6 +69,21 @@ export default function signin({ providers }) {
   const country = {
     flag: 'https://cdn.ipregistry.co/flags/emojitwo/de.svg',
     name: 'Germany',
+  };
+  const signUpHandler = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post('/api/auth/signup', {
+        name,
+        email,
+        password,
+      });
+      setUser({ ...user, error: '', success: data.message });
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setUser({ ...user, success: '', error: error.response.data.message });
+    }
   };
   return (
     <>
@@ -140,6 +167,9 @@ export default function signin({ providers }) {
                 conf_password,
               }}
               validationSchema={registerValidation}
+              onSubmit={() => {
+                signUpHandler();
+              }}
             >
               {(form) => (
                 <Form>
@@ -175,6 +205,8 @@ export default function signin({ providers }) {
                 </Form>
               )}
             </Formik>
+            <div>{error && <span>{error}</span>}</div>
+            <div>{success && <span>{success}</span>}</div>
           </div>
         </div>
       </div>
