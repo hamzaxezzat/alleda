@@ -62,17 +62,7 @@ export default NextAuth({
       issuer: process.env.AUTH0_ISSUER,
     }),
   ],
-  callbacks: {
-    async session({ session, token }) {
-      // Token.sub : id of the user
-      console.log(token);
-      // Bring Out User
-      let user = await User.findById(token.sub);
-      session.user.id = user.token.sub || user._id.toString(); // or user._id
-      session.user.role = user.role || 'user';
-      return session;
-    },
-  },
+
   pages: {
     signIn: '/signin',
   },
@@ -85,12 +75,9 @@ const SignInUser = async ({ password, user }) => {
   if (!user.password) {
     throw new Error('Please enter your password.');
   }
-  const testPassword = bcrypt.compare(password, user.password);
+  const testPassword = await bcrypt.compare(password, user.password);
   if (!testPassword) {
     throw new Error('Incorrect Email or password!');
   }
   return user;
-  // if(user.password!==password){
-  //   throw new Error('Password is incorrect.')
-  // }
 };
