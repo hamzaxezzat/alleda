@@ -62,6 +62,17 @@ export default NextAuth({
       issuer: process.env.AUTH0_ISSUER,
     }),
   ],
+  callbacks: {
+    async session({ session, token }) {
+      // Token.sub : id of the user
+      console.log(token);
+      // Bring Out User
+      let user = await User.findById(token.sub);
+      session.user.id = user.token.sub || user._id.toString(); // or user._id
+      session.user.role = user.role || 'user';
+      return session;
+    },
+  },
   pages: {
     signIn: '/signin',
   },
