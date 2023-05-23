@@ -23,6 +23,7 @@ const initalValues = {
   conf_password: '',
   success: '',
   error: '',
+  login_error: '',
 };
 export default function signin({ providers }) {
   const [loading, setLoading] = useState(false);
@@ -36,13 +37,12 @@ export default function signin({ providers }) {
     conf_password,
     success,
     error,
+    login_error,
   } = user;
-  console.log(providers);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
-  console.log(user);
   const loginValidation = Yup.object({
     login_email: Yup.string()
       .required('Email address is required')
@@ -82,12 +82,30 @@ export default function signin({ providers }) {
       });
       setUser({ ...user, error: '', success: data.message });
       setLoading(false);
-      setTimeout(() => {
+      setTimeout(async () => {
+        let options = {
+          redirect: false,
+          email: email,
+          password: password,
+        };
+        const res = await signIn('credentials', options);
         Router.push('/');
-      }, 2000);
+      }, 1200);
     } catch (error) {
       setLoading(false);
       setUser({ ...user, success: '', error: error.response.data.message });
+    }
+  };
+  const signInHandler = async () => {
+    setLoading(true);
+
+    setUser({ ...user, success: '', error: '' });
+    setLoading(false);
+    if (res?.error) {
+      setLoading(false);
+      setUser({ ...user, login_error: res?.error });
+    } else {
+      return Router.push('/');
     }
   };
   return (
@@ -116,6 +134,7 @@ export default function signin({ providers }) {
                 login_password,
               }}
               validationSchema={loginValidation}
+              onSubmit={() => signInHandler()}
             >
               {(form) => (
                 <Form>
@@ -134,6 +153,9 @@ export default function signin({ providers }) {
                     onChange={handleChange}
                   />
                   <CircledIconBtn type="submit" text="Sign in" />
+                  {login_error && (
+                    <span className={styles.error}>{login_error}</span>
+                  )}
                   <div className={styles.forgot}>
                     <Link href="/forget">Forget Password ?</Link>
                   </div>
