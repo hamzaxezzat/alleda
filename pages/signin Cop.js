@@ -16,7 +16,7 @@ import {
   country,
 } from 'next-auth/react';
 import axios from 'axios';
-import DotLoaderSpinner from '../components/loaders/dotLoader';
+import DotLoaderSpinner from '../components/loaders/dotLoader/index.js';
 import Router from 'next/router';
 const initialvalues = {
   login_email: '',

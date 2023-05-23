@@ -11,6 +11,8 @@ import { useCallback, useState } from 'react';
 import { Provider } from 'react-redux';
 import { getProviders, signIn } from 'next-auth/react';
 import axios, { Axios } from 'axios';
+import BeatLoaderSpinner from '../components/loaders/dotLoader';
+import Router from 'next/router';
 
 const initalValues = {
   login_email: '',
@@ -80,6 +82,9 @@ export default function signin({ providers }) {
       });
       setUser({ ...user, error: '', success: data.message });
       setLoading(false);
+      setTimeout(() => {
+        Router.push('/');
+      }, 2000);
     } catch (error) {
       setLoading(false);
       setUser({ ...user, success: '', error: error.response.data.message });
@@ -87,6 +92,7 @@ export default function signin({ providers }) {
   };
   return (
     <>
+      {loading && <BeatLoaderSpinner loading={loading} />}
       <Header country={country} />
       <div className={styles.login}>
         <div className={styles.login__container}>
@@ -205,8 +211,10 @@ export default function signin({ providers }) {
                 </Form>
               )}
             </Formik>
-            <div>{error && <span>{error}</span>}</div>
-            <div>{success && <span>{success}</span>}</div>
+            <div>{error && <span className={styles.error}>{error}</span>}</div>
+            <div>
+              {success && <span className={styles.success}>{success}</span>}
+            </div>
           </div>
         </div>
       </div>
