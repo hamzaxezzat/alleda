@@ -33,7 +33,7 @@ export default function forget() {
       setEmail('');
     } catch (error) {
       setLoading(false);
-      setSuccess();
+      setSuccess('');
       setError(error.response.data.message);
     }
   };

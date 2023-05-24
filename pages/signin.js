@@ -47,6 +47,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
+    console.log(e.target);
   };
   const loginValidation = Yup.object({
     login_email: Yup.string()
@@ -94,7 +95,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
           password: password,
         };
         const res = await signIn('credentials', options);
-        Router.push('/');
+        Router.push(callbackUrl || '/');
       }, 2000);
     } catch (error) {
       setLoading(false);
@@ -122,7 +123,10 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
     <>
       {loading && <BeatLoaderSpinner loading={loading} />}
       <Header country={country} />
+
+      {/* Full Container */}
       <div className={styles.login}>
+        {/* Sign In */}
         <div className={styles.login__container}>
           <div className={styles.login__header}>
             <div className={styles.back__svg}>
@@ -189,6 +193,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
                       <button
                         className={styles.social__btn}
                         onClick={() => signIn(provider.id)}
+                        // signIn('credetionals',options)
                       >
                         <img src={`../../icons/${provider.name}.png`} />
                         Sign in with {provider.name}
@@ -200,6 +205,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
             </div>
           </div>
         </div>
+        {/* Sign Up */}
         <div className={styles.login__container}>
           <div className={styles.login__form}>
             <h1>Sign up</h1>
@@ -260,6 +266,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
           </div>
         </div>
       </div>
+
       <Footer country={country} />
     </>
   );
