@@ -3,6 +3,7 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import styles from '../styles/Home.module.scss';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { country } from './api/countryData';
 
 // const inter = Inter({ subsets: ['latin'] })
 

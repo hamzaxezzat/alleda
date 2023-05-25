@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import { IoLocationSharp } from 'react-icons/io5';
+import { country } from '../../pages/api/countryData';
 
-export default function Copyright({ country }) {
+// export default function Copyright({ country }) {
+export default function Copyright() {
   return (
     <div className={styles.footer__copyright}>
       <section>© 2023 Alleda All Rights Reserved.</section>

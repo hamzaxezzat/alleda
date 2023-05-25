@@ -6,6 +6,8 @@ import Top from './Top';
 import styles from './styles.module.scss';
 
 export default function Header({ country, session }) {
+  console.log(country);
+  // console.log(countryData);
   return (
     <header className={styles.header}>
       <Ad />

@@ -33,7 +33,7 @@ export default NextAuth({
         if (user) {
           return SignInUser({ password, user });
         } else {
-          throw new Error('This email does not exist.');
+          throw new Error('Incorrect Email or pass!');
 
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }

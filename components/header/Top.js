@@ -6,8 +6,8 @@ import { RiAccountPinCircleLine, RiArrowDropDownFill } from 'react-icons/ri';
 import Link from 'next/link';
 import UserMenu from './UserMenu';
 import { useSession } from 'next-auth/react';
-
-export default function Top({ country }) {
+import { country } from '../../pages/api/countryData';
+export default function Top() {
   const { data: session } = useSession();
 
   const [visible, setVisible] = useState(false);
