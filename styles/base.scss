@@ -304,3 +304,12 @@ $cubic-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 .adminproduct__swiper {
 }
 //-------------Swipers------
+.res_message {
+  margin-top: 10px;
+}
+.success {
+  color: $success-color;
+}
+.error {
+  color: $error-color;
+}
