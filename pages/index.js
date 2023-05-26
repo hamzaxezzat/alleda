@@ -3,19 +3,21 @@ import Footer from '../components/footer';
 import Header from '../components/header';
 import styles from '../styles/Home.module.scss';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { country } from './api/countryData';
-
-// const inter = Inter({ subsets: ['latin'] })
+import Main from '../components/home/main';
 
 export default function Home({ country }) {
   const { data: session } = useSession();
-  // console.log(session);
   return (
-    <div>
+    <>
       <Header country={country} />
-      {session ? 'You Are logged' : ' Please Log in '}
+      {/* {session ? 'You Are logged' : ' Please Log in '} */}
+      <div className={styles.home}>
+        <div className={styles.container}>
+          <Main />
+        </div>
+      </div>
       <Footer country={country} />
-    </div>
+    </>
   );
 }
 
