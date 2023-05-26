@@ -72,6 +72,16 @@ $round-default: 10px;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: $round-default !important;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    .swiper-button-prev,
+    .swiper-button-next {
+      // display: grid;
+      opacity: 1;
+    }
+  }
 }
 
 .swiper-slide {
@@ -94,8 +104,30 @@ $round-default: 10px;
 .mainSwiper {
   .swiper-slide img {
     height: 300px !important;
-    border-radius: $round-default !important;
+    // border-radius: $round-default !important;
     box-shadow: $shadow-1;
+  }
+  .swiper-pagination-bullet-active {
+    width: 15px;
+    border-radius: 5px;
+    transition: 0.2s;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    transform: scale(0.5) translateY(-20px);
+    color: #000;
+    background-color: #ffffffc5;
+    width: 70px;
+    height: 70px;
+    // border-radius: 50%;
+    transition: 0.2s;
+    opacity: 1;
+  }
+  .swiper-button-prev {
+    left: -18px;
+  }
+  .swiper-button-next {
+    right: -18px;
   }
 }
 //------------- End Swipers -------------

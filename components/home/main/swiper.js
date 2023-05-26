@@ -1,36 +1,39 @@
 import styles from './styles.module.scss';
 
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 // import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 
 export default function MainSwiper() {
   return (
     <>
       <Swiper
-        cssMode={true}
+        slidesPerView={1}
+        pagination={{
+          dynamicBullets: true,
+        }}
         navigation={true}
-        pagination={true}
-        mousewheel={true}
-        keyboard={true}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        loop={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        autoplay={{
+          delay: 2300,
+          disableOnInteraction: false,
+        }}
         className="swiper mainSwiper"
       >
-        {Array.from(Array(10), (e, i) => {
-          return (
-            <SwiperSlide key={i}>
-              <img src={`../../../images/swiper/${i + 1}.jpg`} />
-            </SwiperSlide>
-          );
-        })}
+        {[...Array(10).keys()].map((i) => (
+          <SwiperSlide key={i}>
+            <img src={`../../../images/swiper/${i + 1}.jpg`} />
+          </SwiperSlide>
+        ))}
 
         {/* <swiperHolder /> */}
         {/* <SwiperSlide>Slide 2</SwiperSlide> */}
