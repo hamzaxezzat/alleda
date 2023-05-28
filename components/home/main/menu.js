@@ -20,32 +20,64 @@ import { AiOutlineSecurityScan } from 'react-icons/ai';
 import { BsPhoneVibrate } from 'react-icons/bs';
 export default function Menu() {
   return (
-    <ul className={styles.menu}>
-      <li>
-        <a className={styles.menu__header}>
-          <BiCategory />
-          <b>Categories</b>
-        </a>
-      </li>
-      <div className={styles.menu__list}>
+    <div className={styles.menu}>
+      <ul>
+        <li>
+          <a className={styles.menu__header}>
+            <BiCategory />
+            <b>Categories</b>
+          </a>
+        </li>
+        {/* <div className={styles.menu__list}> */}
+
         {menuArray.map((item, i) => (
-          <Link href={item.link} key={item.name}>
-            <a>
-              <span>{item.name}</span>
-            </a>
-          </Link>
+          <li key={i}>
+            <Link href={item.link} key={i}>
+              <a>
+                {i == 0 ? (
+                  <GiLargeDress />
+                ) : i == 1 ? (
+                  <GiClothes />
+                ) : i == 2 ? (
+                  <GiHeadphones />
+                ) : i == 3 ? (
+                  <GiWatch />
+                ) : i == 4 ? (
+                  <HiOutlineHome />
+                ) : i == 5 ? (
+                  <GiHealthCapsule />
+                ) : i == 6 ? (
+                  <GiBallerinaShoes />
+                ) : i == 7 ? (
+                  <GiBigDiamondRing />
+                ) : i == 8 ? (
+                  <GiSportMedal />
+                ) : i == 9 ? (
+                  <FaBaby />
+                ) : i == 10 ? (
+                  <BiCameraMovie />
+                ) : i == 11 ? (
+                  <MdOutlineSportsEsports />
+                ) : i == 12 ? (
+                  <BsPhoneVibrate />
+                ) : i == 13 ? (
+                  <MdOutlineSmartToy />
+                ) : i == 14 ? (
+                  <BiGift />
+                ) : i == 15 ? (
+                  <Gi3DHammer />
+                ) : i == 16 ? (
+                  <AiOutlineSecurityScan />
+                ) : (
+                  ''
+                )}
+                <span>{item.name}</span>
+              </a>
+            </Link>
+          </li>
         ))}
-      </div>
-    </ul>
+        {/* </div> */}
+      </ul>
+    </div>
   );
 }
-// name: "Women's  Fashion",
-//     link: '',
-//     subMenu: [
-//       {
-//         name: '',
-//         link: '',
-//       },
-//     ],
-//     brands: [],
-//     images: [],
