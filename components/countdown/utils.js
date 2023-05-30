@@ -1,39 +1,42 @@
-import dayjs from 'dayjs';
-export function calculeteDiff(timeInMs) {
-  const timestampDayjs = dayjs(timeInMs);
+import dayjs from "dayjs";
+export function calcaulateDiff(timeInMs) {
+  const timestamDayjs = dayjs(timeInMs);
   const nowDayjs = dayjs();
-  return console.log('*****', timestampDayjs);
-
-  if (timestampDayjs.isBefore(nowDayjs)) {
+  if (timestamDayjs.isBefore(nowDayjs)) {
     return {
-      seconds: '00',
-      minutes: '00',
-      hours: '00',
-      days: '00',
+      seconds: "00",
+      minutes: "00",
+      hours: "00",
+      days: "00",
     };
   }
   return {
-    seconds: getRemainingSeconds(nowDayjs, timestampDayjs),
-    minutes: getRemainingMinutes(nowDayjs, timestampDayjs),
-    hours: getRemainingHours(nowDayjs, timestampDayjs),
-    days: getRemainingDays(nowDayjs, timestampDayjs),
+    seconds: getRemainingSeconds(nowDayjs, timestamDayjs),
+    minutes: getRemainingMinutes(nowDayjs, timestamDayjs),
+    hours: getRemainingHours(nowDayjs, timestamDayjs),
+    days: getRemainingDays(nowDayjs, timestamDayjs),
   };
-  console.log(timestampDayjs);
 }
 
-function getRemainingSeconds(nowDayjs, timestampDayjs) {
-  const seconds = timestampDayjs.diff(nowDayjs, 'seconds') % 60;
-  return seconds;
+function getRemainingSeconds(nowDayjs, timestamDayjs) {
+  const seconds = timestamDayjs.diff(nowDayjs, "seconds") % 60;
+  return padWithZeros(seconds, 2);
 }
-function getRemainingMinutes(nowDayjs, timestampDayjs) {
-  const minutes = timestampDayjs.diff(nowDayjs, 'minutes') % 60;
-  return minutes;
+function getRemainingMinutes(nowDayjs, timestamDayjs) {
+  const minutes = timestamDayjs.diff(nowDayjs, "minutes") % 60;
+  return padWithZeros(minutes, 2);
 }
-function getRemainingHours(nowDayjs, timestampDayjs) {
-  const hours = timestampDayjs.diff(nowDayjs, 'hours') % 60;
-  return hours;
+function getRemainingHours(nowDayjs, timestamDayjs) {
+  const hours = timestamDayjs.diff(nowDayjs, "hours") % 60;
+  return padWithZeros(hours, 2);
 }
-function getRemainingDays(nowDayjs, timestampDayjs) {
-  const days = timestampDayjs.diff(nowDayjs, 'days');
-  return days;
+function getRemainingDays(nowDayjs, timestamDayjs) {
+  const days = timestamDayjs.diff(nowDayjs, "days");
+  return days.toString();
+}
+
+function padWithZeros(number, length) {
+  const numberString = number.toString();
+  if (numberString.length >= length) return numberString;
+  return "0".repeat(length - numberString.length) + numberString;
 }

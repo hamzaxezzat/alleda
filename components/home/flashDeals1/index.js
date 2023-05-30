@@ -21,7 +21,7 @@ export default function FlashDeals() {
           FLASH SALE
           <MdFlashOn />
         </h1>
-        <Countdown date={new Date(2023, 6, 1)} />
+        <Countdown date={new Date('Oct 25, 22')} />
       </div>
       <Swiper
         slidesPerView={1}
@@ -49,7 +49,7 @@ export default function FlashDeals() {
       >
         <div className={styles.flashDeals__list}>
           {flashDealsArray.map((product, i) => (
-            <SwiperSlide>
+            <SwiperSlide key={i}>
               <FlashCard product={product} key={i} />
             </SwiperSlide>
           ))}
