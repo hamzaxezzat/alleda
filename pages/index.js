@@ -4,6 +4,7 @@ import Header from '../components/header';
 import styles from '../styles/Home.module.scss';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Main from '../components/home/main';
+import FlashDeals from '../components/home/flashDeals';
 
 export default function Home({ country }) {
   const { data: session } = useSession();
@@ -14,6 +15,7 @@ export default function Home({ country }) {
       <div className={styles.home}>
         <div className={styles.container}>
           <Main />
+          <FlashDeals />
         </div>
       </div>
       <Footer country={country} />

@@ -23,7 +23,7 @@ import { BsPhoneVibrate } from 'react-icons/bs';
 export default function Menu() {
   return (
     <div className={styles.menu}>
-      <ul></ul>
+      <ul>
         <li>
           <a className={styles.menu__header}>
             <BiCategory />
