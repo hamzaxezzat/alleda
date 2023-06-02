@@ -1,4 +1,9 @@
 .home {
   min-height: 100vh;
   background: $grey-color;
+  &__category {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 }

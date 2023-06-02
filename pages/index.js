@@ -5,6 +5,9 @@ import styles from '../styles/Home.module.scss';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Main from '../components/home/main';
 import FlashDeals from '../components/home/flashDeals';
+import Category from '../components/home/category';
+import { BsArrowRightCircle } from 'react-icons/bs';
+import { women_accessories, women_dresses, women_shoes } from '../data/home';
 
 export default function Home({ country }) {
   const { data: session } = useSession();
@@ -16,6 +19,23 @@ export default function Home({ country }) {
         <div className={styles.container}>
           <Main />
           <FlashDeals />
+          <div className={styles.home__category}>
+            <Category
+              header="Dreases"
+              product={women_dresses}
+              background="#f2ca47"
+            />
+            <Category
+              header="Shoes"
+              product={women_shoes}
+              background="#ec6342"
+            />
+            <Category
+              header="Accessories"
+              product={women_accessories}
+              background="#000"
+            />
+          </div>
         </div>
       </div>
       <Footer country={country} />
