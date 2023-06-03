@@ -37,7 +37,7 @@ function ProductsSwiper({ header, products }) {
         {products.map((product, i) => (
           <SwiperSlide key={i}>
             <div className={styles.product}>
-              <div className={styles.product__img}></div>
+              <div className={styles.product__img}>
                 <img src={product.image} alt={product.name} />
               </div>
               <div className={styles.product__infos}>
