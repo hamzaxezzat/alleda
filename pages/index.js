@@ -8,6 +8,8 @@ import FlashDeals from '../components/home/flashDeals';
 import Category from '../components/home/category';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import {
+  gamingSwiper,
+  homeImprovSwiper,
   women_accessories,
   women_dresses,
   women_shoes,
@@ -49,6 +51,16 @@ export default function Home({ country }) {
             />
           </div>
           <ProductsSwiper products={women_swiper} />
+          <ProductsSwiper
+            products={gamingSwiper}
+            header="For Games"
+            bg="#ec6342"
+          />
+          <ProductsSwiper
+            products={homeImprovSwiper}
+            header="House Improvment"
+            bg="#841e3e"
+          />
         </div>
       </div>
       <Footer country={country} />

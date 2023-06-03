@@ -5,11 +5,15 @@ import 'swiper/css/pagination';
 
 import { Navigation } from 'swiper';
 
-function ProductsSwiper({ header, products }) {
+function ProductsSwiper({ header, products, bg }) {
   console.log(products);
   return (
     <div className={styles.wrapper}>
-      {header && <div className={styles.header}>{header}</div>}
+      {header && (
+        <div className={styles.header} style={{ background: `${bg}` }}>
+          {header}
+        </div>
+      )}
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -46,7 +50,7 @@ function ProductsSwiper({ header, products }) {
                     ? `${product.name.slice(0, 30)}...`
                     : product.name}
                 </h1>
-                <span>USD {product.price}$</span>
+                {product.price && <span>USD {product.price}$</span>}
               </div>
             </div>
           </SwiperSlide>
