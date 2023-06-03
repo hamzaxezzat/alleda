@@ -8,9 +8,12 @@ import FlashDeals from '../components/home/flashDeals';
 import Category from '../components/home/category';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import { women_accessories, women_dresses, women_shoes } from '../data/home';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Home({ country }) {
   const { data: session } = useSession();
+  const isMedium = useMediaQuery({ query: '(max-width:850px)' });
+  const isMobile = useMediaQuery({ query: '(max-width:550px)' });
   return (
     <>
       <Header country={country} />
@@ -25,11 +28,14 @@ export default function Home({ country }) {
               product={women_dresses}
               background="#f2ca47"
             />
-            <Category
-              header="Shoes"
-              product={women_shoes}
-              background="#ec6342"
-            />
+            {!isMedium && (
+              <Category
+                header="Shoes"
+                product={women_shoes}
+                background="#ec6342"
+              />
+            )}
+
             <Category
               header="Accessories"
               product={women_accessories}
