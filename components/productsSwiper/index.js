@@ -6,7 +6,6 @@ import 'swiper/css/pagination';
 import { Navigation } from 'swiper';
 
 function ProductsSwiper({ header, products, bg }) {
-  console.log(products);
   return (
     <div className={styles.wrapper}>
       {header && (

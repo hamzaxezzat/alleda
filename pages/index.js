@@ -17,8 +17,11 @@ import {
 } from '../data/home';
 import { useMediaQuery } from 'react-responsive';
 import ProductsSwiper from '../components/productsSwiper';
+import db from '../utils/db';
+import Product from '../models/Product';
 
-export default function Home({ country }) {
+export default function Home({ country, products }) {
+  // console.log('Products', products);
   const { data: session } = useSession();
   const isMedium = useMediaQuery({ query: '(max-width:850px)' });
   const isMobile = useMediaQuery({ query: '(max-width:550px)' });
@@ -70,15 +73,20 @@ export default function Home({ country }) {
 
 //! Development Mode
 export async function getServerSideProps() {
+  db.connectDb();
+
+  let products = await Product.find().sort({ createdAt: -1 }).lean();
+  let productsData = JSON.parse(JSON.stringify(products));
+  //? find() : fetch all products
+  //? sort createdAt: -1 : new first
+  //? lean(): tells Mongoose to skip hydrating the result documents,  https://mongoosejs.com/docs/tutorials/lean.html
+  // console.log(products);
   let data = await axios
     .get('')
     .then((res) => {
       return res.data.location.country;
     })
-    .catch((err) => {
-      // console.log(err)
-    });
-  // console.log(data)
+    .catch((err) => {});
   data = {
     name: 'Germany',
     flag: {
@@ -87,6 +95,7 @@ export async function getServerSideProps() {
   };
   return {
     props: {
+      productsData,
       country: {
         name: data.name,
         flag: data.flag.emojitwo,
@@ -97,6 +106,12 @@ export async function getServerSideProps() {
 
 // //! Uncomment in Production mode
 // export async function getServerSideProps(){
+// db.connectDb();
+// let products = await Product.find().sort({ createdAt: -1 }).lean();
+//? find() : fetch all products
+//? sort createdAt: -1 : new first
+//? lean(): tells Mongoose to skip hydrating the result documents,  https://mongoosejs.com/docs/tutorials/lean.html
+// console.log(products);
 //   let data = await axios
 //   .get('https://api.ipregistry.co/?key=ddg0utxgkql4pksy')
 //   .then((res)=>{
