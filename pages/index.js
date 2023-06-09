@@ -65,11 +65,11 @@ export default function Home({ country, products }) {
             header="House Improvment"
             bg="#841e3e"
           />
-        </div>
-        <div className={styles.products}>
-          {products.map((product) => (
-            <ProductCard product={product} key={product._id} />
-          ))}
+          <div className={styles.products}>
+            {products.map((product) => (
+              <ProductCard product={product} key={product._id} />
+            ))}
+          </div>
         </div>
       </div>
       <Footer country={country} />

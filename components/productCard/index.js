@@ -33,6 +33,51 @@ export default function ProductCard({ product }) {
             <ProductSwiper images={images} />
           </div>
         </Link>
+        {product.subProducts[active].discount ? (
+          <div className={styles.product__discount}>
+            -{product.subProducts[active].discount}%
+          </div>
+        ) : (
+          ''
+        )}
+        <div className={styles.product__infos}>
+          <h1>
+            {product.name.length > 45
+              ? `${product.name.substring(0, 45)}...`
+              : product.name}
+          </h1>
+          <span>
+            {prices.length == 1
+              ? `USD ${prices[0]}`
+              : `USD ${prices[0]} - ${prices[prices.length - 1]}$`}
+          </span>
+          <div className={styles.product__colors}>
+            {styless &&
+              styless.map((style, i) =>
+                style.image ? (
+                  <img
+                    className={i == active && styles.active}
+                    key={i}
+                    src={style.image}
+                    alt=""
+                    onMouseOver={() => {
+                      setImages(product.subProducts[i].images);
+                      setActive(i);
+                    }}
+                  />
+                ) : (
+                  <span
+                    key={i}
+                    style={{ backgroundColor: `${style.color}` }}
+                    onMouseOver={() => {
+                      setImages(product.subProducts[i].images);
+                      setActive(i);
+                    }}
+                  ></span>
+                )
+              )}
+          </div>
+        </div>
       </div>
     </div>
   );
