@@ -22,7 +22,6 @@ import Product from '../models/Product';
 import ProductCard from '../components/productCard';
 
 export default function Home({ country, products }) {
-  console.log('Products', products);
   const { data: session } = useSession();
   const isMedium = useMediaQuery({ query: '(max-width:850px)' });
   const isMobile = useMediaQuery({ query: '(max-width:550px)' });
@@ -80,7 +79,6 @@ export default function Home({ country, products }) {
 //! Development Mode
 export async function getServerSideProps() {
   db.connectDb();
-
   let products = await Product.find().sort({ createdAt: -1 }).lean();
   //? find() : fetch all products
   //? sort createdAt: -1 : new first
