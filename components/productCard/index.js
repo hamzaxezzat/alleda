@@ -22,9 +22,8 @@ export default function ProductCard({ product }) {
         .map((size) => size.price)
         .sort((a, b) => a - b)
     );
-  }, [active]);
-  //   product.subProducts[active];
-  //   console.log('styles', styles);
+  }, [active, product.subProducts]);
+
   return (
     <div className={styles.product}>
       <div className={styles.product__container}>

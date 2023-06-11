@@ -45,7 +45,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      loswercase: true,
+      //lowercase: true,
     },
     category: {
       type: ObjectId,
@@ -54,11 +54,10 @@ const productSchema = new mongoose.Schema(
     },
     subCategories: [
       {
-        type: [ObjectId],
-        ref: 'SubCategory',
+        type: ObjectId,
+        ref: 'subCategory',
       },
     ],
-    // Dynamic Details to add individual details
     details: [
       {
         name: String,
@@ -91,9 +90,9 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    // Same Product put e.x one color has discount
     subProducts: [
       {
+        sku: String,
         images: [],
         description_images: [],
         color: {
@@ -128,4 +127,5 @@ const productSchema = new mongoose.Schema(
 );
 const Product =
   mongoose.models.Product || mongoose.model('Product', productSchema);
+
 export default Product;
