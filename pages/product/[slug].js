@@ -1,6 +1,6 @@
 import styles from '../../styles/product.module.scss';
 import db from '../../utils/db';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Product from '../../models/Product';
 import Head from 'next/head';
@@ -8,8 +8,10 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Category from '../../models/Category';
 import SubCategory from '../../models/subCategory';
+import MainSwiper from '../../components/productPage/mainSwiper';
 
 function product({ product }) {
+  const [activeImg, setActiveImg] = useState('');
   console.log(product.subCategories);
   // console.log(product.name);
   return (
@@ -25,6 +27,10 @@ function product({ product }) {
             {product.subCategories.map((sub) => (
               <span key={sub.name}>/{sub.name}</span>
             ))}
+          </div>
+          <div className={styles.product__main}>
+            <MainSwiper images={product.images} activeImg={activeImg} />
+            <div>a</div>
           </div>
         </div>
       </div>
