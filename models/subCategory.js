@@ -9,10 +9,10 @@ const subSchema = new mongoose.Schema(
       required: true,
     },
     slug: {
-      name: String,
+      type: String,
       unique: true,
-      index: true,
       lowercase: true,
+      index: true,
     },
     parent: {
       type: ObjectId,
@@ -26,6 +26,6 @@ const subSchema = new mongoose.Schema(
 );
 
 const SubCategory =
-  mongoose.models.subCategory || mongoose.model('SubCategory', subSchema);
+  mongoose.models.SubCategory || mongoose.model('SubCategory', subSchema);
 
 export default SubCategory;

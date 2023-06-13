@@ -1,0 +1,10 @@
+.product {
+  min-height: 100vh;
+  &__container {
+    max-width: 1200px;
+  }
+  .path {
+    font-size: 14px;
+    color: #666;
+  }
+}
