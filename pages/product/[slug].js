@@ -9,6 +9,7 @@ import Footer from '../../components/footer';
 import Category from '../../models/Category';
 import SubCategory from '../../models/subCategory';
 import MainSwiper from '../../components/productPage/mainSwiper';
+import Infos from '../../components/productPage/infos';
 
 function product({ product }) {
   const [activeImg, setActiveImg] = useState('');
@@ -30,7 +31,7 @@ function product({ product }) {
           </div>
           <div className={styles.product__main}>
             <MainSwiper images={product.images} activeImg={activeImg} />
-            <div>a</div>
+            <Infos product={product} />
           </div>
         </div>
       </div>
