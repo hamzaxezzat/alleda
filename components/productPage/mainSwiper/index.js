@@ -11,10 +11,10 @@ export default function MainSwiper({ images, activeImg }) {
             smallImage: {
               alt: 'Wristwatch by Ted Baker London',
               isFluidWidth: true,
-              src: images[active].url,
+              src: activeImg || images[active].url,
             },
             largeImage: {
-              src: images[active].url,
+              src: activeImg || images[active].url,
               width: 1200,
               height: 1800,
             },
