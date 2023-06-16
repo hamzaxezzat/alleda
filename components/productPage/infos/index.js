@@ -8,26 +8,8 @@ export default function Infos({ product, setActiveImg }) {
   const router = useRouter();
   console.log('product', product);
   const [size, setSize] = useState(router.query.size);
-  // console.log('product.sizes', product.sizes);
-  // console.log('product.quantity', product.quantity);
-  // const priceRangeWrapper = `${
-  //   product.priceRange ? (
-  //     <h2>{product.priceRange}</h2>
-  //   ) : (
-  //     <h2>{product.price}</h2>
-  //   )
-  // }
-  //         ${
-  //           product.discount > 0 ? (
-  //             <h3>
-  //               <span>{product.priceBefore}$</span>
-  //               <span>(-{product.discount}%)</span>
-  //             </h3>
-  //           ) : (
-  //             ''
-  //           )
-  //         }`;
-  // console.log(priceRangeWrapper);
+  // const [activeImg, setActiveImg] = useState(0);
+
   return (
     <div className={styles.infos}>
       <div className={styles.infos__container}>
@@ -91,17 +73,13 @@ export default function Infos({ product, setActiveImg }) {
             product.colors.map((color, i) => (
               <span
                 key={i}
-                className={`${
-                  i == router.query.style ? styles.active_color : ''
-                }`}
+                className={i == router.query.style ? styles.active_color : ''}
                 onMouseOver={() =>
                   setActiveImg(product.subProducts[i].images[0].url)
                 }
                 onMouseLeave={() => setActiveImg('')}
               >
-                <Link
-                  href={`/product/${product.slug}?style=${router.query.style}`}
-                >
+                <Link href={`/product/${product.slug}?style=${i}`}>
                   <img src={color.image} alt="" />
                 </Link>
               </span>

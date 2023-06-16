@@ -31,7 +31,7 @@ function product({ product }) {
           </div>
           <div className={styles.product__main}>
             <MainSwiper images={product.images} activeImg={activeImg} />
-            <Infos product={product} />
+            <Infos product={product} setActiveImg={setActiveImg} />
           </div>
         </div>
       </div>
