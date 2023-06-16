@@ -1,15 +1,23 @@
 import { Rating } from '@mui/material';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Infos({ product, setActiveImg }) {
   const router = useRouter();
   console.log('product', product);
   const [size, setSize] = useState(router.query.size);
-  // const [activeImg, setActiveImg] = useState(0);
-
+  const [qty, setQty] = useState(1);
+  useEffect(() => {
+    setSize('');
+    setQty(1);
+  }, [router.query.style]);
+  useEffect(() => {
+    if (qty > product.quantity) {
+      setQty(product.quantity);
+    }
+  }, [router.query.size]);
   return (
     <div className={styles.infos}>
       <div className={styles.infos__container}>
@@ -84,6 +92,15 @@ export default function Infos({ product, setActiveImg }) {
                 </Link>
               </span>
             ))}
+        </div>
+        <div className={styles.infos__qty}>
+          <button onClick={() => qty > 1 && setQty((prev) => prev - 1)}>
+            -
+          </button>
+          <span>{qty}</span>
+          <button onClick={() => qty < product.quantity && setQty(qty + 1)}>
+            +
+          </button>
         </div>
       </div>
     </div>
