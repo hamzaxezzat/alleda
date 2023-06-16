@@ -3,6 +3,11 @@ import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { HiMinusSm, HiPlusSm } from 'react-icons/hi';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { BsHandbagFill, BsHeart } from 'react-icons/bs';
+import Share from '../share';
+import Accordian from './Accordian';
 
 export default function Infos({ product, setActiveImg }) {
   const router = useRouter();
@@ -95,13 +100,28 @@ export default function Infos({ product, setActiveImg }) {
         </div>
         <div className={styles.infos__qty}>
           <button onClick={() => qty > 1 && setQty((prev) => prev - 1)}>
-            -
+            <HiMinusSm />
           </button>
           <span>{qty}</span>
           <button onClick={() => qty < product.quantity && setQty(qty + 1)}>
-            +
+            <HiPlusSm />
           </button>
         </div>
+        <div className={styles.infos__actions}>
+          <button
+            disabled={product.quantity < 1}
+            style={{ cursor: `${product.quantity < 1 ? 'not-allowed' : ''}` }}
+            // onClick={() => addToCartHandler()}
+          >
+            <BsHandbagFill />
+            Add To Cart
+          </button>
+          <button>
+            <BsHeart /> Wishlist
+          </button>
+        </div>
+        <Share />
+        <Accordian details={[product.description, ...product.details]} />
       </div>
     </div>
   );
