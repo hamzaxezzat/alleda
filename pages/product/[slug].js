@@ -10,6 +10,7 @@ import Category from '../../models/Category';
 import SubCategory from '../../models/subCategory';
 import MainSwiper from '../../components/productPage/mainSwiper';
 import Infos from '../../components/productPage/infos';
+import Reviews from '../../components/productPage/reviews';
 
 function product({ product }) {
   const [activeImg, setActiveImg] = useState('');
@@ -33,6 +34,7 @@ function product({ product }) {
             <MainSwiper images={product.images} activeImg={activeImg} />
             <Infos product={product} setActiveImg={setActiveImg} />
           </div>
+          <Reviews product={product} />
         </div>
       </div>
       <Footer />
@@ -86,6 +88,23 @@ export async function getServerSideProps(context) {
         : subProduct.sizes[size].price,
     priceBefore: subProduct.sizes[size].price,
     quantity: subProduct.sizes[size].qty,
+    ratings: [
+      {
+        percentage: '',
+      },
+      {
+        percentage: '',
+      },
+      {
+        percentage: '',
+      },
+      {
+        percentage: '',
+      },
+      {
+        percentage: '',
+      },
+    ],
   };
   // -------
   db.disconnectDb();
