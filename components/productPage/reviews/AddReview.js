@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Select from './Select';
 import styles from './styles.module.scss';
 import { Rating } from '@mui/material';
+import Images from './Images';
 
 export default function AddReview({ product }) {
   const [size, setSize] = useState('');
@@ -9,6 +10,7 @@ export default function AddReview({ product }) {
   const [fit, setFit] = useState('');
   const [review, setReview] = useState('');
   const [rating, setRating] = useState();
+  const [images, setImages] = useState([]);
   console.log('productColor', product.colors);
   return (
     <div className={styles.reviews__add}>
@@ -34,6 +36,7 @@ export default function AddReview({ product }) {
             handleChange={setFit}
           />
         </div>
+        <Images images={images} setImages={setImages} />
         <textarea
           name="review"
           value={review}
