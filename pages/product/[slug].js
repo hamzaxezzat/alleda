@@ -90,21 +90,33 @@ export async function getServerSideProps(context) {
     quantity: subProduct.sizes[size].qty,
     ratings: [
       {
-        percentage: '',
+        percentage: 76,
       },
       {
-        percentage: '',
+        percentage: 14,
       },
       {
-        percentage: '',
+        percentage: 6,
       },
       {
-        percentage: '',
+        percentage: 4,
       },
       {
-        percentage: '',
+        percentage: 0,
       },
     ],
+    allSizes: product.subProducts
+      .map((p) => {
+        return p.sizes;
+      })
+      .flat()
+      .sort((a, b) => {
+        return a.size - b.size;
+      })
+      .filter(
+        (element, index, array) =>
+          array.findIndex((el2) => el2.size === element.size) === index
+      ),
   };
   // -------
   db.disconnectDb();

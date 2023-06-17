@@ -1,7 +1,12 @@
 import { Rating } from '@mui/material';
 import styles from './styles.module.scss';
+import { useSession, signIn } from 'next-auth/react';
+import AddReview from './AddReview';
+import { useState } from 'react';
 
 export default function Reviews({ product }) {
+  const { data: session } = useSession();
+
   return (
     <div className={styles.reviews}>
       <div className={styles.reviews__container}>
@@ -10,6 +15,7 @@ export default function Reviews({ product }) {
           <div className={styles.reviews__Stats_overview}>
             <span>Average Rating</span>
             <div className={styles.reviews__stats_overview_rating}>
+              {/* name="half-rating-read" defaultValue={2.5} precision={0.5} */}
               <Rating
                 name="half-rating-read"
                 defaultValue={product.rating}
@@ -19,20 +25,35 @@ export default function Reviews({ product }) {
               />
               {product.rating == 0 ? 'No Review' : product.rating}
             </div>
-            <div className={styles.reviews__stats_reviews}>
-              {product.ratings.map((rating, i) => {
-                <div className={styles.reviews__stats_reviews_review}>
-                  <Rating
-                    name="half-rating-read"
-                    defaultValue={5 - i}
-                    readOnly
-                    style={{ color: '#FACF19' }}
-                  />
-                  {/* <div className={styles.}></div> */}
-                </div>;
-              })}
-            </div>
           </div>
+          <div className={styles.reviews__stats_reviews}>
+            {product.ratings.map((rating, i) => (
+              <div key={i} className={styles.reviews__stats_reviews_review}>
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={5 - i}
+                  readOnly
+                  style={{ color: '#FACF19' }}
+                />
+                <div className={styles.bar}>
+                  <div
+                    className={styles.bar__inner}
+                    style={{ width: `${rating.percentage}%` }}
+                  ></div>
+                </div>
+                <span> {rating.percentage}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          {session ? (
+            <AddReview product={product} />
+          ) : (
+            <button onClick={() => signIn()} className={styles.login_btn}>
+              Login to add review
+            </button>
+          )}
         </div>
       </div>
     </div>
