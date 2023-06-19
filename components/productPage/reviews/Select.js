@@ -3,9 +3,8 @@ import styles from './styles.module.scss';
 import { IoArrowDown } from 'react-icons/io5';
 
 export default function Select({ property, text, data, handleChange }) {
-  console.log('data', text, data);
   const [visible, setVisible] = useState(false);
-  // console.log(data);
+
   return (
     <div className={styles.select}>
       {text}:

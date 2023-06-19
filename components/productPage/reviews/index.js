@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import { useSession, signIn } from 'next-auth/react';
 import AddReview from './AddReview';
 import { useState } from 'react';
+import Table from './Table';
 
 export default function Reviews({ product }) {
   const { data: session } = useSession();
@@ -55,6 +56,7 @@ export default function Reviews({ product }) {
             </button>
           )}
         </div>
+        <Table reviews={product.reviews} />
       </div>
     </div>
   );

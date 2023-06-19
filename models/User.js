@@ -1,18 +1,21 @@
 import mongoose from 'mongoose';
+const { ObjectId } = mongoose.Schema;
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: 'Please Enter Your Fullname',
+      required: 'Please enter your full name.',
     },
     email: {
       type: String,
-      required: 'Please Enter Your Email',
+      required: 'Please enter your email address.',
+      trim: true,
+      unique: true,
     },
     password: {
       type: String,
-      required: 'Please Enter Your Password',
+      required: '"Please enter a password.',
     },
     role: {
       type: String,
@@ -20,7 +23,8 @@ const userSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      default: 'https://cdn-icons-png.flaticon.com/256/1946/1946429.png',
+      default:
+        'https://res.cloudinary.com/dmhcnhtng/image/upload/v1664642478/992490_b0iqzq.png',
     },
     emailVerified: {
       type: Boolean,
@@ -60,28 +64,27 @@ const userSchema = mongoose.Schema(
           type: String,
         },
         active: {
-          type: String,
+          type: Boolean,
           default: false,
         },
       },
     ],
-    // wishlist: [
-    //   {
-    //     product: {
-    //       type: ObjectId,
-    //       ref: 'Product',
-    //     },
-    //     style: {
-    //       type: String,
-    //     },
-    //   },
-    // ],
+    wishlist: [
+      {
+        product: {
+          type: ObjectId,
+          ref: 'Product',
+        },
+        style: {
+          type: String,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
-
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 export default User;

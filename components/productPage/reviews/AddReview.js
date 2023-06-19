@@ -11,7 +11,7 @@ export default function AddReview({ product }) {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState();
   const [images, setImages] = useState([]);
-  console.log('productColor', product.colors);
+
   return (
     <div className={styles.reviews__add}>
       <div className={styles.reviews__add_wrap}>

@@ -1,33 +1,37 @@
 import styles from '../../styles/product.module.scss';
 import db from '../../utils/db';
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import Product from '../../models/Product';
+import Category from '../../models/Category';
+import SubCategory from '../../models/SubCategory';
+import User from '../../models/User';
 import Head from 'next/head';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import Category from '../../models/Category';
-import SubCategory from '../../models/subCategory';
+import { produceWithPatches } from 'immer';
 import MainSwiper from '../../components/productPage/mainSwiper';
+import { useState } from 'react';
 import Infos from '../../components/productPage/infos';
 import Reviews from '../../components/productPage/reviews';
-
-function product({ product }) {
+import ProductsSwiper from '../../components/productsSwiper';
+export default function product({ product, related }) {
   const [activeImg, setActiveImg] = useState('');
-  console.log(product.subCategories);
-  // console.log(product.name);
+  console.log('Review', product.reviews);
+  const country = {
+    name: 'Morocco',
+    flag: 'https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360',
+  };
   return (
-    <div>
+    <>
       <Head>
         <title>{product.name}</title>
       </Head>
-      <Header />
+      <Header country={country} />
       <div className={styles.product}>
         <div className={styles.product__container}>
           <div className={styles.path}>
             Home / {product.category.name}
             {product.subCategories.map((sub) => (
-              <span key={sub.name}>/{sub.name}</span>
+              <span>/{sub.name}</span>
             ))}
           </div>
           <div className={styles.product__main}>
@@ -35,14 +39,14 @@ function product({ product }) {
             <Infos product={product} setActiveImg={setActiveImg} />
           </div>
           <Reviews product={product} />
+          {/*
+          <ProductsSwiper products={related} />
+          */}
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }
-
-export default product;
 
 export async function getServerSideProps(context) {
   const { query } = context;
@@ -50,10 +54,11 @@ export async function getServerSideProps(context) {
   const style = query.style;
   const size = query.size || 0;
   db.connectDb();
-  // -------
+  //------------
   let product = await Product.findOne({ slug })
     .populate({ path: 'category', model: Category })
     .populate({ path: 'subCategories', model: SubCategory })
+    .populate({ path: 'reviews.reviewBy', model: User })
     .lean();
   let subProduct = product.subProducts[style];
   let prices = subProduct.sizes
@@ -63,9 +68,9 @@ export async function getServerSideProps(context) {
     .sort((a, b) => {
       return a - b;
     });
-  // console.log(prices);
   let newProduct = {
     ...product,
+    style,
     images: subProduct.images,
     sizes: subProduct.sizes,
     discount: subProduct.discount,
@@ -90,21 +95,22 @@ export async function getServerSideProps(context) {
     quantity: subProduct.sizes[size].qty,
     ratings: [
       {
-        percentage: 76,
+        percentage: calculatePercentage('5'),
       },
       {
-        percentage: 14,
+        percentage: calculatePercentage('4'),
       },
       {
-        percentage: 6,
+        percentage: calculatePercentage('3'),
       },
       {
-        percentage: 4,
+        percentage: calculatePercentage('2'),
       },
       {
-        percentage: 0,
+        percentage: calculatePercentage('1'),
       },
     ],
+    reviews: product.reviews.reverse(),
     allSizes: product.subProducts
       .map((p) => {
         return p.sizes;
@@ -118,12 +124,26 @@ export async function getServerSideProps(context) {
           array.findIndex((el2) => el2.size === element.size) === index
       ),
   };
-  // -------
+  const related = await Product.find({ category: product.category._id }).lean();
+  //------------
+  function calculatePercentage(num) {
+    return (
+      (product.reviews.reduce((a, review) => {
+        return (
+          a +
+          (review.rating == Number(num) || review.rating == Number(num) + 0.5)
+        );
+      }, 0) *
+        100) /
+      product.reviews.length
+    ).toFixed(1);
+  }
   db.disconnectDb();
-  // console.log(currentProduct);
+  console.log('related', related);
   return {
     props: {
       product: JSON.parse(JSON.stringify(newProduct)),
+      related: JSON.parse(JSON.stringify(related)),
     },
   };
 }

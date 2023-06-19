@@ -12,7 +12,7 @@ import SimilarSwiper from './SimilarSwiper';
 
 export default function Infos({ product, setActiveImg }) {
   const router = useRouter();
-  console.log('product', product);
+
   const [size, setSize] = useState(router.query.size);
   const [qty, setQty] = useState(1);
   useEffect(() => {

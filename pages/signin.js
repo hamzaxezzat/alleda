@@ -47,7 +47,6 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(e.target);
   };
   const loginValidation = Yup.object({
     login_email: Yup.string()
