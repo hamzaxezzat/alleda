@@ -1,9 +1,8 @@
-import styles from './styles.module.scss';
-import { IoArrowDown } from 'react-icons/io5';
-import { useState } from 'react';
-export default function Select({ property, text, data, handleChange }) {
+import styles from "./styles.module.scss";
+import { IoArrowDown } from "react-icons/io5";
+import { useState } from "react";
+export default function TableSelect({ property, text, data, handleChange }) {
   const [visible, setVisible] = useState(false);
-  console.log(data);
   return (
     <div className={styles.select}>
       {text}:
@@ -13,26 +12,22 @@ export default function Select({ property, text, data, handleChange }) {
         onMouseLeave={() => setVisible(false)}
         style={{
           background: `${
-            text == 'Style' && property.color && `${property.color}`
+            text == "Style" && property?.color && `${property?.color}`
           }`,
         }}
       >
         <span
           className={`${styles.flex} ${styles.select__header_wrap}`}
           style={{
-            padding: '0 5px',
+            padding: "0 5px",
           }}
         >
-          {text == 'Size' ? (
+          {text == "Rating" || text == "Size" || text == "Order" ? (
             property || `Select ${text}`
-          ) : text == 'Style' && property.image ? (
-            <img src={property.image} alt="" />
-          ) : text == 'How does it fit' && property ? (
-            property
-          ) : !property && text == 'How does it fit' ? (
-            'How Does it fit'
+          ) : text == "Style" && property?.image ? (
+            <img src={property?.image} alt="" />
           ) : (
-            'Select Style'
+            "Select Style"
           )}
           <IoArrowDown />
         </span>
@@ -41,16 +36,24 @@ export default function Select({ property, text, data, handleChange }) {
             className={styles.select__header_menu}
             onMouseOver={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
+            style={{ width: text == "Order" && "200px" }}
           >
             {data.map((item, i) => {
-              if (text == 'Size') {
+              if (text == "Rating") {
+                return (
+                  <li key={i} onClick={() => handleChange(item.value)}>
+                    <span>{item.text}</span>
+                  </li>
+                );
+              }
+              if (text == "Size") {
                 return (
                   <li key={i} onClick={() => handleChange(item.size)}>
                     <span>{item.size}</span>
                   </li>
                 );
               }
-              if (text == 'Style') {
+              if (text == "Style") {
                 return (
                   <li
                     key={i}
@@ -58,15 +61,23 @@ export default function Select({ property, text, data, handleChange }) {
                     style={{ backgroundColor: `${item.color}` }}
                   >
                     <span>
-                      <img src={item.image} alt="" />
+                      {item.image ? (
+                        <img src={item.image} alt="" />
+                      ) : (
+                        "All Styles"
+                      )}
                     </span>
                   </li>
                 );
               }
-              if (text == 'How does it fit') {
+              if (text == "Order") {
                 return (
-                  <li key={i} onClick={() => handleChange(item)}>
-                    <span>{item}</span>
+                  <li
+                    style={{ width: text == "Order" && "200px" }}
+                    key={i}
+                    onClick={() => handleChange(item.value)}
+                  >
+                    <span>{item.text}</span>
                   </li>
                 );
               }

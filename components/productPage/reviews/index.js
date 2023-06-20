@@ -1,22 +1,22 @@
 import { Rating } from '@mui/material';
-import styles from './styles.module.scss';
 import { useSession, signIn } from 'next-auth/react';
-import AddReview from './AddReview';
 import { useState } from 'react';
+import AddReview from './AddReview';
+import Select from './Select';
+import styles from './styles.module.scss';
 import Table from './Table';
-
 export default function Reviews({ product }) {
   const { data: session } = useSession();
-
+  const [rating, setRating] = useState('');
+  const [reviews, setReviews] = useState(product.reviews);
   return (
     <div className={styles.reviews}>
       <div className={styles.reviews__container}>
         <h1>Customer Reviews ({product.reviews.length})</h1>
         <div className={styles.reviews__stats}>
-          <div className={styles.reviews__Stats_overview}>
+          <div className={styles.reviews__stats_overview}>
             <span>Average Rating</span>
             <div className={styles.reviews__stats_overview_rating}>
-              {/* name="half-rating-read" defaultValue={2.5} precision={0.5} */}
               <Rating
                 name="half-rating-read"
                 defaultValue={product.rating}
@@ -24,12 +24,12 @@ export default function Reviews({ product }) {
                 readOnly
                 style={{ color: '#FACF19' }}
               />
-              {product.rating == 0 ? 'No Review' : product.rating}
+              {product.rating == 0 ? 'No review yet.' : product.rating}
             </div>
           </div>
           <div className={styles.reviews__stats_reviews}>
             {product.ratings.map((rating, i) => (
-              <div key={i} className={styles.reviews__stats_reviews_review}>
+              <div className={styles.reviews__stats_reviews_review}>
                 <Rating
                   name="half-rating-read"
                   defaultValue={5 - i}
@@ -42,21 +42,23 @@ export default function Reviews({ product }) {
                     style={{ width: `${rating.percentage}%` }}
                   ></div>
                 </div>
-                <span> {rating.percentage}%</span>
+                <span>{rating.percentage}%</span>
               </div>
             ))}
           </div>
         </div>
-        <div>
-          {session ? (
-            <AddReview product={product} />
-          ) : (
-            <button onClick={() => signIn()} className={styles.login_btn}>
-              Login to add review
-            </button>
-          )}
-        </div>
-        <Table reviews={product.reviews} />
+        {session ? (
+          <AddReview product={product} setReviews={setReviews} />
+        ) : (
+          <button onClick={() => signIn()} className={styles.login_btn}>
+            Login to add review
+          </button>
+        )}
+        <Table
+          reviews={reviews}
+          allSizes={product.allSizes}
+          colors={product.colors}
+        />
       </div>
     </div>
   );
