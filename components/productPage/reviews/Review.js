@@ -31,13 +31,13 @@ export default function Review({ review }) {
             <span>Size:</span>
             {review.size}
             &nbsp;&nbsp;
-            <div className={styles.flex}>
+            <span className={styles.flex}>
               <img
                 src={review.style.image}
                 alt=""
                 className={styles.review__img}
               />
-            </div>
+            </span>
           </p>
         </div>
       </div>

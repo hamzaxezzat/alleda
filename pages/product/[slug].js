@@ -30,8 +30,8 @@ export default function product({ product, related }) {
         <div className={styles.product__container}>
           <div className={styles.path}>
             Home / {product.category.name}
-            {product.subCategories.map((sub) => (
-              <span>/{sub.name}</span>
+            {product.subCategories.map((sub, key) => (
+              <span key={key}>/{sub.name}</span>
             ))}
           </div>
           <div className={styles.product__main}>

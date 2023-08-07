@@ -9,6 +9,7 @@ export default function Reviews({ product }) {
   const { data: session } = useSession();
   const [rating, setRating] = useState('');
   const [reviews, setReviews] = useState(product.reviews);
+  console.log('Session', session);
   return (
     <div className={styles.reviews}>
       <div className={styles.reviews__container}>
