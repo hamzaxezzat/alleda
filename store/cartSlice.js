@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+const initialState = {
+  cartItems: [],
+};
 // in Reducers we add all of our cart actions : like:
 // Add Product
 // update Product
@@ -7,12 +9,22 @@ import { createSlice } from '@reduxjs/toolkit';
 // empty card Product
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: 'Hello',
-  reducers: {},
+  initialState,
+  reducers: {
+    addToCart(state, action) {
+      state.cartItems.push(action, payload);
+    },
+    updateCart(state, action) {
+      state.cartItems = action.payload;
+    },
+    emptyCart(state, action) {
+      state.cartItems = [];
+    },
+  },
 });
 
 // Export Actions | with destructuring
-// export const {} = cartSlice.actions
+export const { addToCart, updateCart, emptyCart } = cartSlice.actions;
 
 // Export default reducer of cartSlice
 export default cartSlice.reducer;
